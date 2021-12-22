@@ -1,6 +1,6 @@
 # Segmentation_SCHP_Tensorflow
 
-##Dataset structure: 
+## Dataset structure: 
 ```
 Segmentation_SCHP_Tensorflow
 +-- ATR 
