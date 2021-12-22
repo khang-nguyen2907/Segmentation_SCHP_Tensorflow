@@ -1,5 +1,6 @@
 # Segmentation_SCHP_Tensorflow
 
+- Original project is [here](https://github.com/PeikeLi/Self-Correction-Human-Parsing) implemented in Pytorch
 
 
 ## Dataset structure: 
