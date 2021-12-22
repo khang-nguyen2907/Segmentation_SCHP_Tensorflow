@@ -1,6 +1,9 @@
 # Segmentation_SCHP_Tensorflow
 
+
+
 ## Dataset structure: 
+- Dataset can be downloaded [here](https://drive.google.com/drive/folders/182hTfb-vkTT0desI-ByKsAodv7-olpNB?usp=sharing)
 ```
 Segmentation_SCHP_Tensorflow
 +-- ATR 
@@ -27,3 +30,4 @@ Segmentation_SCHP_Tensorflow
 +-- train.py
 
 ```
+
