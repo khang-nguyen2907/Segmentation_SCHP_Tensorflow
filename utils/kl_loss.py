@@ -3,6 +3,7 @@ from tensorflow.keras.losses import Loss, KLDivergence
 import numpy as np
 
 def flatten_probas(input, target, labels, ignore_index = 255):
+    C = input.shape[3]
     input = tf.reshape(input, (-1, C))
     target = tf.reshape(target, (-1, C))
     labels = tf.reshape(labels, (-1))
