@@ -55,11 +55,11 @@ class CriterionAll(Loss):
         for pred_parsing in preds_parsing:
             scale_pred = tf.compat.v1.image.resize_bilinear(pred_parsing, size = [h,w], align_corners=True)
             loss += 0.5 * self.lambda_1 * self.lovasz(target[0],scale_pred)
-            print("Lovazs loss:", 0.5 * self.lambda_1 * self.lovasz(target[0],scale_pred))
+            # print("Lovazs loss:", 0.5 * self.lambda_1 * self.lovasz(target[0],scale_pred))
 
             if target[2] is None: #target[2] = soft_preds
                 loss += 0.5 * self.lambda_1 * self.criterion(target[0], scale_pred)
-                print("Seg cross_entropy:", self.lambda_1 * self.criterion(target[0], scale_pred))
+                # print("Seg cross_entropy:", self.lambda_1 * self.criterion(target[0], scale_pred))
             else:
                 soft_scale_pred = tf.compat.v1.image.resize_bilinear(target[2], size = [h,w], align_corners=True)
                 soft_scale_pred = moving_average(soft_scale_pred, to_one_hot(target[0], self.num_classes), 1.0 / (cycle_n + 1.0))
@@ -72,7 +72,7 @@ class CriterionAll(Loss):
 
             if target[3] is None:
                 loss += self.lambda_2 * self.criterion(target[1], scale_pred)
-                print("Edge cross loss: ",self.lambda_2 * self.criterion(target[1], scale_pred))
+                # print("Edge cross loss: ",self.lambda_2 * self.criterion(target[1], scale_pred))
             else:
                 soft_scale_edge = tf.compat.v1.image.resize_bilinear(target[3], size=[h,w], align_corners=True)
                 soft_scale_edge = moving_average(soft_scale_edge, to_one_hot(target[1], 2), 1.0/(cycle_n+1.0))
@@ -87,7 +87,7 @@ class CriterionAll(Loss):
             scale_edge = tf.compat.v1.image.resize_bilinear(preds_edge[0], size=[h,w], align_corners=True)
             pred = [scale_pred, scale_edge]
             loss += self.lambda_3 * self.reg(target[0], pred)
-            print("Consistency Loss: ", self.lambda_3 * self.reg(target[0], pred))
+            # print("Consistency Loss: ", self.lambda_3 * self.reg(target[0], pred))
 
         return loss
 
@@ -111,5 +111,6 @@ def to_one_hot(tensor, num_cls):
     :return:
         an encoded mask (label) with dimension (b, h, w, c)
     """
+    tensor = tf.cast(tensor, dtype=tf.int64)
     onehot_tensor = tf.one_hot(tensor, num_cls)
     return onehot_tensor
