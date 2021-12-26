@@ -13,10 +13,10 @@ def set_momentum(model, momentum):
     model.edge.bn2.momentum = momentum
     model.edge.bn3.momentum = momentum
     # In Decoder_module
-    model.edge.bn1.momentum = momentum
-    model.edge.bn2.momentum = momentum
-    model.edge.bn3.momentum = momentum
-    model.edge.bn4.momentum = momentum
+    model.decoder.bn1.momentum = momentum
+    model.decoder.bn2.momentum = momentum
+    model.decoder.bn3.momentum = momentum
+    model.decoder.bn4.momentum = momentum
     # In Resent module
     model.fusion.layers[1].momentum = momentum
     
